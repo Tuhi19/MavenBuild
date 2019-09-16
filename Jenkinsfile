@@ -5,10 +5,9 @@ stage ('checkout code'){
 }
 	
 stage ('Build'){
-	sh "cd mavenbuild"
 	sh "mvn clean install"
-	sh "sudo docker build -t mavenbuild ."
-	sh "sudo docker push mavenbuild"
+	sh "docker build -t mavenbuild ."
+	sh "docker push mavenbuild"
 }
 
 stage ('Test Cases Execution'){
