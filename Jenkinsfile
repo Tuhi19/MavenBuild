@@ -7,7 +7,7 @@ stage ('checkout code'){
 stage ('Build'){
 	sh "mvn clean install"
 	sh "docker build -t mavenbuild ."
-	sh "docker run -d -p 8081:8081 mavenbuild"
+	sh "docker run -d -p 8081:8080 mavenbuild"
 }
 
 stage ('Test Cases Execution'){
