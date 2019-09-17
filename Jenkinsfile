@@ -11,7 +11,7 @@ stage ('Build Docker Image'){
 	sh "docker build -t tuhi19/mavenbuild:0.0.1 ."
 }
 stage('Push to Docker Hub'){
-	sh "docker push tuhi19/mavenbuild:0.0.1"
+	sh "docker push docker.io/tuhi19/mavenbuild:0.0.1"
 }
 stage('Remove Previous Container'){
 	 try{
