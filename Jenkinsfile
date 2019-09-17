@@ -5,31 +5,22 @@ stage ('checkout code'){
 }
 	
 stage ('Build'){
-	
 	sh "mvn clean install"
-	sh 'mv target/*.war /opt/tomcat8/webapps'
-}
-stage ('Build Docker Image'){
-	
-	sh "docker build -t tuhi19/mavenbuild:0.0.1 ."
-}
-stage('Push to Docker Hub'){
-	
-	 sh 'docker push tuhi19/mavenbuild:0.0.1'
-}
- stage('Remove Previous Container'){
-	 
-	try{
-		sh 'docker rm -f mavenbuild'
-		}
-	}catch(error){
-		//  do nothing if there is an exception
-	}	
-}		
 }
 
-stage('Deploy to Stage Environment'){
+stage ('Test Cases Execution'){
+	sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
+}
+
+stage ('Sonar Analysis'){
+	//sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:80'
+}
+
+stage ('Archive Artifacts'){
+	archiveArtifacts artifacts: 'target/*.war'
+}
 	
-	sh "docker run -d -p 8083:8080 mavenbuild:0.0.1"
+stage ('Deployment'){
+	sh 'cp target/*.war /opt/tomcat8/webapps'
 }
 }
