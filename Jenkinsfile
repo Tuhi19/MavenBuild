@@ -17,8 +17,8 @@ stage('Push to Docker Hub'){
 stage('Remove Previous Container'){
 	 try{
 		sh "docker rm -f mavenbuild"
-		}
-	}catch(error){
+	}
+	catch(error){
 		//  do nothing if there is an exception
 	}	
 }		
