@@ -4,7 +4,7 @@ stage ('checkout code'){
 	checkout scm
 }
 	
-stage ('Build'){
+stage ('Build1'){
 	sh "mvn clean install"
 }
 
