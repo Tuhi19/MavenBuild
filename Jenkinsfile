@@ -23,6 +23,6 @@ stage('Remove Previous Container'){
 	}	
 }		
 stage('Deploy to Stage Environment'){
-	sh "docker run -d -p 8083:8080 mavenbuild:0.0.1"
+	sh "docker run -d -p 8083:8080 tuhi19/mavenbuild:0.0.1"
 }
 }
