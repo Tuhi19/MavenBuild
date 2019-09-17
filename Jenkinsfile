@@ -6,7 +6,6 @@ stage ('checkout code'){
 	
 stage ('Build'){
 	sh "mvn clean install"
-	sh "mv target/*.war /opt/tomcat8/webapps"
 }
 stage ('Build Docker Image'){
 	sh "docker build -t tuhi19/mavenbuild:0.0.1 ."
