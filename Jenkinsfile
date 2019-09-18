@@ -21,7 +21,10 @@ stage('Remove Previous Container'){
 	catch(error){
 		//  do nothing if there is an exception
 	}	
-}		
+}
+stage('Pull from Docker Hub'){
+	sh "docker pull tuhi19/mavenbuild:0.0.1"
+}
 stage('Deploy to Stage Environment'){
 	sh "docker run -d -p 8083:8080 tuhi19/mavenbuild:0.0.1"
 }
